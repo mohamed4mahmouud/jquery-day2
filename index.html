@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/jquery-ui/dist/jquery-ui.min.js"></script>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+      img {
+        width: 190px;
+      }
+      #draggable {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+      }
+      p {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        color: #333;
+        margin: 10px 0;
+      }
+
+      .black-hole {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background-color: black;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="draggable" class="ui-widget-content">
+      <img src="imgs/images.jpeg" alt="" />
+    </div>
+
+    <div id="droppable" class="ui-widget-header">
+      <div class="black-hole">Black Hole</div>
+      <p></p>
+    </div>
+    <script>
+      $(function () {
+        $("#draggable").draggable();
+        $("#droppable").droppable({
+          drop: function (event, ui) {
+            $("#draggable").hide();
+            $(this).find("p").html("Image Dropped!");
+          },
+        });
+        $("#draggable").on("click", function () {
+          $("#draggable").effect("shake", "slow", 500);
+        });
+      });
+    </script>
+  </body>
+</html>
